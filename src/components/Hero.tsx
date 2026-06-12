@@ -57,7 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ lang = "tr", trData }) => {
     >
       <div className="relative flex flex-col items-center justify-center mx-auto h-full p-4 max-w-[1200px] text-center gap-y-4 z-10">
         <img
-          src="/img/me.jpeg"
+          src="/img/me.png"
           alt={`${tr.hero.name} - ${tr.hero.role}`}
           className="rounded-full w-32 h-32 sm:w-40 sm:h-40 object-cover mx-auto"
         />
