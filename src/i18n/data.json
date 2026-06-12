@@ -1,0 +1,898 @@
+{
+  "en": {
+    "nav": {
+      "about": "About",
+      "experience": "Experience",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "hero": {
+      "greeting": "Hello, I'm",
+      "name": "Umut Eren Kaplan",
+      "role": "Computer Engineer, Mobile Application Developer, Game Developer",
+      "years": "",
+      "description": "I am a Computer Engineering graduate from Manisa Celal Bayar University, focused on game development and mobile application projects.",
+      "cta": "Let's talk?",
+      "ariaDown": "Scroll to next section"
+    },
+    "about": {
+      "badge": "01.",
+      "title": "About me",
+      "whoTitle": "Who is Umut Eren Kaplan?",
+      "bio1": "I am a Computer Engineering graduate from Manisa Celal Bayar University.\nI specialize in mobile applications, game development, and web-based projects. <br>\nI build products targeting real-user problems using Flutter, Unity, Firebase, and modern web technologies.",
+      "bio2": "",
+      "infoCard1Title": "Computer Engineering",
+      "infoCard1Text": "GPA: 3.38 / 4",
+      "infoCard2Title": "Erasmus+ Experience",
+      "infoCard2Text": "Education & Internship in Europe",
+      "infoCard3Title": "Focus Area",
+      "infoCard3Text": "Flutter / Unity / Web Developer",
+      "diplomaTitle": "Education & Degree",
+      "diplomaText": "B.S. in Computer Engineering<br>Manisa Celal Bayar University<br>GPA: 3.38 / 4",
+      "languagesTitle": "Languages",
+      "languagesText": "• Turkish (Native)<br>• English (B2)",
+      "erasmusTitle": "Erasmus+ Mobility",
+      "erasmusText": "Kosovo - Kadri Zeka University<br>International education & cultural exchange",
+      "cvCardTitle": "Curriculum Vitae",
+      "cvCardText": "Download my current CV (PDF)",
+      "certTitle": "",
+      "techTitle": "",
+      "certifications": [],
+      "technologies": [
+        {
+          "name": "Flutter",
+          "icon": "/img/logos/flutter_icon.svg"
+        },
+        {
+          "name": "Dart",
+          "icon": "/img/logos/dart-original.svg"
+        },
+        {
+          "name": "Unity",
+          "icon": "/img/logos/unity_icon.svg"
+        },
+        {
+          "name": "C#",
+          "icon": "/img/logos/csharp_icon.svg"
+        },
+        {
+          "name": "C++",
+          "icon": "/img/logos/cpp_icon.svg"
+        },
+        {
+          "name": "Java",
+          "icon": "/img/logos/java_icon.svg"
+        },
+        {
+          "name": "Python",
+          "icon": "/img/logos/python_icon.svg"
+        },
+        {
+          "name": "PHP",
+          "icon": "/img/logos/php-original.svg"
+        },
+        {
+          "name": "HTML",
+          "icon": "/img/logos/html_icon.svg"
+        },
+        {
+          "name": "CSS",
+          "icon": "/img/logos/css_icon.svg"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "/img/logos/js_icon.svg"
+        },
+        {
+          "name": "React",
+          "icon": "/img/logos/react_icon.svg"
+        },
+        {
+          "name": "Next.js",
+          "icon": "/img/logos/nextjs-original.svg"
+        },
+        {
+          "name": "Flask",
+          "icon": "/img/logos/flask-original.svg"
+        },
+        {
+          "name": "MySQL",
+          "icon": "/img/logos/mysql-original.svg"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "/img/logos/postgresql_icon.svg"
+        },
+        {
+          "name": "MongoDB",
+          "icon": "/img/logos/mongodb-original.svg"
+        },
+        {
+          "name": "Firebase",
+          "icon": "/img/logos/firebase-plain.svg"
+        },
+        {
+          "name": "Docker",
+          "icon": "/img/logos/docker_icon.svg"
+        },
+        {
+          "name": "Google Cloud",
+          "icon": "/img/logos/googlecloud-original.svg"
+        },
+        {
+          "name": "AWS",
+          "icon": "/img/logos/aws_icon.svg"
+        },
+        {
+          "name": "Cloudflare",
+          "icon": "/img/logos/cloudflare-original.svg"
+        },
+        {
+          "name": "Android Studio",
+          "icon": "/img/logos/android-original.svg"
+        },
+        {
+          "name": "Linux",
+          "icon": "/img/logos/linux_icon.svg"
+        },
+        {
+          "name": "Bash",
+          "icon": "/img/logos/bash-original.svg"
+        },
+        {
+          "name": "Git",
+          "icon": "/img/logos/git_icon.svg"
+        },
+        {
+          "name": "Github",
+          "icon": "/img/logos/github_icon.svg"
+        },
+        {
+          "name": "Apache",
+          "icon": "/img/logos/apache-original.svg"
+        }
+      ]
+    },
+    "experience": {
+      "badge": "02.",
+      "title": "Experience & education",
+      "items": [
+        {
+          "company": "Manisa Celal Bayar University",
+          "role": "Computer Engineering (Bachelor Graduate)",
+          "duration": "09.2022 — 01.2026",
+          "description": "GPA: 3.38 / 4",
+          "isWork": false
+        },
+        {
+          "company": "Room Games",
+          "role": "Unity Game Developer Intern",
+          "duration": "Sep 2025 — Dec 2025",
+          "description": "• Developed a physics-based 3D game prototype using Unity and C#.<br>\n• Worked on game mechanics, asset integration, UI, and optimization processes.<br>\n• Advanced the project from concept stage to a playable prototype.",
+          "isWork": true
+        },
+        {
+          "company": "Frank Pfützenreuter",
+          "role": "Erasmus+ Internship Mobility",
+          "duration": "Jul 2024 — Sep 2024",
+          "description": "• Completed an Erasmus+ software engineering internship, adapting to international workflows.<br>\n• Successfully delivered assigned projects, demonstrating strong time management and discipline.<br>\n• Developed effective communication skills within a multicultural engineering team.",
+          "isWork": true
+        },
+        {
+          "company": "Universiteti Publik Kadri Zeka",
+          "role": "Erasmus Learning Mobility",
+          "duration": "02.2024 — 06.2024",
+          "description": "International education experience and study discipline in Kosovo under the Erasmus+ program.",
+          "isWork": false
+        },
+        {
+          "company": "MASKI (Manisa Su ve Kanalizasyon İdaresi)",
+          "role": "Android Developer Intern",
+          "duration": "Jul 2023 — Aug 2023",
+          "description": "• Developed functional mobile applications using Android Studio, focusing on user-friendly interfaces.<br>\n• Strengthened core Java programming skills through practical application in projects.<br>\n• Gained hands-on experience in mobile app development lifecycle and software architecture.",
+          "isWork": true
+        },
+        {
+          "company": "Manisa Celal Bayar University",
+          "role": "School of Foreign Languages (English Prep)",
+          "duration": "09.2019 — 06.2020",
+          "description": "English Language Education (B2 Level)",
+          "isWork": false
+        }
+      ]
+    },
+    "projects": {
+      "badge": "03.",
+      "title": "Latest projects",
+      "intro": "These projects showcase the <span class=\"text-accent\">design and development</span> of attractive and functional game, mobile app, and web experiences that tackle complex challenges.",
+      "viewSite": "View Project",
+      "viewRepo": "View Repository",
+      "viewAll": "View all projects",
+      "items": [
+        {
+          "title": "ShutTheBox-Web",
+          "description": "A web version of the classic board game Shut The Box with a modern interface and no installation required.",
+          "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/ShutTheBox-Web",
+          "github": "https://github.com/kaeruishere/ShutTheBox-Web"
+        },
+        {
+          "title": "JET10 - Retro Arcade & Game Library",
+          "description": "A retro-themed mobile application designed as a central arcade platform and game library. Includes coin economy, Firebase authentication, and AdMob integration.",
+          "technologies": [
+            "Flutter",
+            "Dart",
+            "Firebase",
+            "AdMob"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/JET10---Retro-Arcade-Game-Library",
+          "github": "https://github.com/kaeruishere/JET10---Retro-Arcade-Game-Library"
+        },
+        {
+          "title": "Yuvam",
+          "description": "A planning application where couples can easily manage organizations like Engagement, Henna Night, and Weddings with budget and task tracking.",
+          "technologies": [
+            "Flutter",
+            "Dart",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Yuvam",
+          "github": "https://github.com/kaeruishere/Yuvam"
+        },
+        {
+          "title": "LoveWrapped",
+          "description": "An animated Spotify Wrapped-style website that visualizes memories and statistics for special occasions or anniversaries.",
+          "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/LoveWrapped",
+          "github": "https://github.com/kaeruishere/LoveWrapped"
+        },
+        {
+          "title": "S.S. Çamlı Tarımsal Kalkınma Kooperatifi",
+          "description": "Custom corporate website designed and developed for the S.S. Çamlı Tarımsal Kalkınma Kooperatifi",
+          "technologies": [
+            "PHP",
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1464226184884-fa280b87c3a9?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere",
+          "github": "https://github.com/kaeruishere"
+        },
+        {
+          "title": "Scrap Yard Smash",
+          "description": "A physics-based demolition game with 3D graphics, set in a fun and action-packed scrapyard environment.",
+          "technologies": [
+            "Unity",
+            "C#"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1584906734730-a7d4df966d82?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Scrap-Yard-Smash",
+          "github": "https://github.com/kaeruishere/Scrap-Yard-Smash"
+        },
+        {
+          "title": "İş Başvurum",
+          "description": "A mobile application where users can manage job applications, upload CVs, and track application status.",
+          "technologies": [
+            "Flutter",
+            "Dart",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/İş-Başvurum",
+          "github": "https://github.com/kaeruishere/İş-Başvurum"
+        },
+        {
+          "title": "JET10 Games",
+          "description": "A collection of integrated mini-games developed with HTML5 and web-based technologies for the JET10 platform. Works on every device with responsive design.",
+          "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/JET10-Games",
+          "github": "https://github.com/kaeruishere/JET10-Games"
+        },
+        {
+          "title": "SMTP Service",
+          "description": "A customized mail sending microservice for applications, featuring REST API support, reliability, and error logging.",
+          "technologies": [
+            "Node.js",
+            "Express",
+            "Nodemailer"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/SMTP-Service",
+          "github": "https://github.com/kaeruishere/SMTP-Service"
+        },
+        {
+          "title": "KPSSLingo",
+          "description": "An interactive knowledge learning and test-solving application for candidates preparing for the KPSS exam. Features include daily tests, word memorization cards, and progress tracking.",
+          "technologies": [
+            "Flutter",
+            "Dart",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/KPSSLingo",
+          "github": "https://github.com/kaeruishere/KPSSLingo"
+        },
+        {
+          "title": "Randevusu Online",
+          "description": "A system offering online appointment creation for businesses, management via admin panel, and calendar integration.",
+          "technologies": [
+            "PHP",
+            "JavaScript",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere",
+          "github": "https://github.com/kaeruishere/Randevusu-Online"
+        },
+        {
+          "title": "Shut The Box (Mobile)",
+          "description": "A version of the classic board game Shut The Box developed with Java for mobile devices, featuring dice animations and leaderboards.",
+          "technologies": [
+            "Java",
+            "Android Studio",
+            "PostgreSQL",
+            "Flask"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1511649475109-a5c09e7de1db?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Shut-The-Box-Mobile",
+          "github": "https://github.com/kaeruishere/Shut-The-Box-Mobile"
+        },
+        {
+          "title": "Tournament Platform",
+          "description": "A platform for organizing PES/FIFA tournaments with friends, featuring automatic fixture creation and score tracking. Offers statistics-based betting odds and player management.",
+          "technologies": [
+            "HTML/CSS",
+            "JavaScript",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/Tournament-Platform",
+          "github": "https://github.com/kaeruishere/Tournament-Platform"
+        },
+        {
+          "title": "Workie",
+          "description": "A work hour tracking, earning calculation, and detailed report sending application for hourly-paid employees.",
+          "technologies": [
+            "Java",
+            "Android Studio",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1508962914676-134849a727f0?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Workie",
+          "github": "https://github.com/kaeruishere/Workie"
+        },
+        {
+          "title": "Kaeru URL Bypass Bot",
+          "description": "A Telegram bot designed to automatically bypass shortened or ad-supported links (URLs). It supports many different services and provides fast redirection.",
+          "technologies": [
+            "Python",
+            "Telegram Bot API",
+            "Requests"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Kaeru-URL-Bypass-Bot",
+          "github": "https://github.com/kaeruishere/Kaeru-URL-Bypass-Bot"
+        },
+        {
+          "title": "Personal Portfolio",
+          "description": "My personal website with a modern and responsive design, showcasing my projects, skills, and experiences.",
+          "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop",
+          "link": "https://errenn.com",
+          "github": "https://github.com/kaeruishere/errenn.com"
+        }
+      ]
+    },
+    "contact": {
+      "badge": "04.",
+      "title": "Contact",
+      "headline": "Let's talk",
+      "subheadline": "I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!",
+      "emailLabel": "Email",
+      "emailAction": "Write",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "cv": "Download CV",
+      "emailValue": "kaplanumuteren@gmail.com",
+      "linkedinUrl": "https://www.linkedin.com/in/umuterenkaplan",
+      "githubUrl": "https://github.com/kaeruishere",
+      "cvUrl": "/files/Umut_Eren_Kaplan_CV.pdf",
+      "formName": "Name",
+      "formEmail": "Email",
+      "formSubject": "Subject",
+      "formMessage": "Message",
+      "formSubmit": "Send Message",
+      "formSending": "Sending...",
+      "formSuccess": "Your message has been sent successfully!",
+      "formError": "Something went wrong. Please try again.",
+      "formNamePlaceholder": "John Doe",
+      "formEmailPlaceholder": "john@example.com",
+      "formSubjectPlaceholder": "How can I help you?",
+      "formMessagePlaceholder": "Your message here..."
+    },
+    "footer": {
+      "designedIn": "Designed in",
+      "developedIn": "Coded in",
+      "builtWith": "Built with",
+      "and": "&"
+    },
+    "layout": {
+      "htmlLang": "en",
+      "ogLocale": "en_US",
+      "title": "Umut Eren Kaplan - Computer Engineer | Portfolio",
+      "description": "Personal portfolio of Computer Engineer Umut Eren Kaplan, focusing on game development, mobile apps (Flutter), and web technologies.",
+      "keywords": "Umut Eren Kaplan, Computer Engineer, Developer, Flutter, Unity, Game Developer, Web Developer, C#, Python, Portfolio"
+    }
+  },
+  "tr": {
+    "nav": {
+      "about": "Hakkımda",
+      "experience": "Deneyim",
+      "projects": "Projeler",
+      "contact": "İletişim"
+    },
+    "hero": {
+      "greeting": "Merhaba, Ben",
+      "name": "Umut Eren Kaplan",
+      "role": "Bilgisayar Mühendisi, Mobil Uygulama Geliştirici, Oyun Geliştirici",
+      "years": "",
+      "description": "Oyun geliştirme ve mobil uygulama projelerine odaklanan, Manisa Celal Bayar Üniversitesi mezunu bir bilgisayar mühendisiyim.",
+      "cta": "Konuşalım mı?",
+      "ariaDown": "Sonraki bölüme git"
+    },
+    "about": {
+      "badge": "01.",
+      "title": "Hakkımda",
+      "whoTitle": "Umut Eren Kaplan Kimdir?",
+      "bio1": "Manisa Celal Bayar Üniversitesi Bilgisayar Mühendisliği mezunuyum.\nMobil uygulama, oyun geliştirme ve web tabanlı projeler üzerine çalışıyorum.<br>\nFlutter, Unity, Firebase ve modern web teknolojileriyle gerçek kullanıcı problemlerine yönelik ürünler geliştiriyorum.",
+      "bio2": "",
+      "infoCard1Title": "Bilgisayar Mühendisliği",
+      "infoCard1Text": "GANO: 3.38 / 4",
+      "infoCard2Title": "Erasmus+ Deneyimi",
+      "infoCard2Text": "Avrupa'da Eğitim & Staj",
+      "infoCard3Title": "Teknoloji Odağı",
+      "infoCard3Text": "Flutter / Unity / Web Geliştirici",
+      "diplomaTitle": "Eğitim & Diploma",
+      "diplomaText": "Bilgisayar Mühendisliği Lisans<br>Manisa Celal Bayar Üniversitesi<br>GANO: 3.38 / 4",
+      "languagesTitle": "Yabancı Diller",
+      "languagesText": "• Türkçe (Anadil)<br>• İngilizce (B2 Seviyesi)",
+      "erasmusTitle": "Erasmus+ Hareketliliği",
+      "erasmusText": "Kosova - Kadri Zeka Üniversitesi<br>Uluslararası eğitim ve kültür deneyimi",
+      "cvCardTitle": "Özgeçmiş (CV)",
+      "cvCardText": "Güncel özgeçmişimi (PDF) indirin.",
+      "certTitle": "",
+      "techTitle": "",
+      "certifications": [],
+      "technologies": [
+        {
+          "name": "Flutter",
+          "icon": "/img/logos/flutter_icon.svg"
+        },
+        {
+          "name": "Dart",
+          "icon": "/img/logos/dart-original.svg"
+        },
+        {
+          "name": "Unity",
+          "icon": "/img/logos/unity_icon.svg"
+        },
+        {
+          "name": "C#",
+          "icon": "/img/logos/csharp_icon.svg"
+        },
+        {
+          "name": "C++",
+          "icon": "/img/logos/cpp_icon.svg"
+        },
+        {
+          "name": "Java",
+          "icon": "/img/logos/java_icon.svg"
+        },
+        {
+          "name": "Python",
+          "icon": "/img/logos/python_icon.svg"
+        },
+        {
+          "name": "PHP",
+          "icon": "/img/logos/php-original.svg"
+        },
+        {
+          "name": "HTML",
+          "icon": "/img/logos/html_icon.svg"
+        },
+        {
+          "name": "CSS",
+          "icon": "/img/logos/css_icon.svg"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "/img/logos/js_icon.svg"
+        },
+        {
+          "name": "React",
+          "icon": "/img/logos/react_icon.svg"
+        },
+        {
+          "name": "Next.js",
+          "icon": "/img/logos/nextjs-original.svg"
+        },
+        {
+          "name": "Flask",
+          "icon": "/img/logos/flask-original.svg"
+        },
+        {
+          "name": "MySQL",
+          "icon": "/img/logos/mysql-original.svg"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "/img/logos/postgresql_icon.svg"
+        },
+        {
+          "name": "MongoDB",
+          "icon": "/img/logos/mongodb-original.svg"
+        },
+        {
+          "name": "Firebase",
+          "icon": "/img/logos/firebase-plain.svg"
+        },
+        {
+          "name": "Docker",
+          "icon": "/img/logos/docker_icon.svg"
+        },
+        {
+          "name": "Google Cloud",
+          "icon": "/img/logos/googlecloud-original.svg"
+        },
+        {
+          "name": "AWS",
+          "icon": "/img/logos/aws_icon.svg"
+        },
+        {
+          "name": "Cloudflare",
+          "icon": "/img/logos/cloudflare-original.svg"
+        },
+        {
+          "name": "Android Studio",
+          "icon": "/img/logos/android-original.svg"
+        },
+        {
+          "name": "Linux",
+          "icon": "/img/logos/linux_icon.svg"
+        },
+        {
+          "name": "Bash",
+          "icon": "/img/logos/bash-original.svg"
+        },
+        {
+          "name": "Git",
+          "icon": "/img/logos/git_icon.svg"
+        },
+        {
+          "name": "Github",
+          "icon": "/img/logos/github_icon.svg"
+        },
+        {
+          "name": "Apache",
+          "icon": "/img/logos/apache-original.svg"
+        }
+      ]
+    },
+    "experience": {
+      "badge": "02.",
+      "title": "Deneyim ve Eğitim",
+      "items": [
+        {
+          "company": "Manisa Celal Bayar Üniversitesi",
+          "role": "Bilgisayar Mühendisliği (Lisans Mezunu)",
+          "duration": "09.2022 — 01.2026",
+          "description": "GANO: 3.38 / 4",
+          "isWork": false
+        },
+        {
+          "company": "Room Games",
+          "role": "Unity Oyun Geliştirici Stajyeri",
+          "duration": "Eyl 2025 — Ara 2025",
+          "description": "• Unity ve C# ile fizik tabanlı 3D oyun prototipi geliştirdim.<br>\n• Oyun mekanikleri, asset entegrasyonu, UI ve optimizasyon süreçlerinde çalıştım.<br>\n• Projeyi konsept aşamasından oynanabilir prototipe kadar ilerlettim.",
+          "isWork": true
+        },
+        {
+          "company": "Frank Pfützenreuter",
+          "role": "Erasmus Staj Hareketliliği",
+          "duration": "Tem 2024 — Eyl 2024",
+          "description": "• Uluslararası bir ortamda profesyonel mühendislik iş akışlarına uyum sağlayarak Erasmus+ stajını tamamladım.<br>\n• Atanan projeleri başarıyla teslim ederek zaman yönetimi ve iş disiplini sergiledim.<br>\n• Çok kültürlü bir ekip içinde etkili iletişim ve adaptasyon becerileri geliştirdim.",
+          "isWork": true
+        },
+        {
+          "company": "Universiteti Publik Kadri Zeka",
+          "role": "Erasmus Öğrenim Hareketliliği",
+          "duration": "02.2024 — 06.2024",
+          "description": "Kosova'da Erasmus programı ile uluslararası eğitim deneyimi kazandım.",
+          "isWork": false
+        },
+        {
+          "company": "MASKİ (Manisa Su ve Kanalizasyon İdaresi)",
+          "role": "Android Geliştirici Stajyeri",
+          "duration": "Tem 2023 — Ağu 2023",
+          "description": "• Android Studio kullanarak kullanıcı dostu arayüzlere odaklanan işlevsel mobil uygulamalar geliştirdim.<br>\n• Pratik uygulamalar aracılığıyla Java programlama becerilerimi pekiştirdim.<br>\n• Mobil uygulama geliştirme yaşam döngüsü ve yazılım mimarisi hakkında deneyim kazandım.",
+          "isWork": true
+        },
+        {
+          "company": "Manisa Celal Bayar Üniversitesi",
+          "role": "Yabancı Diller Yüksekokulu (İngilizce Hazırlık)",
+          "duration": "09.2019 — 06.2020",
+          "description": "İngilizce Dil Eğitimi (B2 Seviyesi)",
+          "isWork": false
+        }
+      ]
+    },
+    "projects": {
+      "badge": "03.",
+      "title": "Son Projeler",
+      "intro": "Bu projeler, kullanıcılar ve her projenin hedefleri için gerçek etki yaratan çözümler yapılandırarak, oyun, mobil uygulama ve web tabanlı deneyimlerin <span class=\"text-accent\">tasarımını ve geliştirilmesini</span> sergilemektedir.",
+      "viewSite": "Projeyi Görüntüle",
+      "viewRepo": "Depoyu Görüntüle",
+      "viewAll": "Tüm Projeleri Gör",
+      "items": [
+        {
+          "title": "ShutTheBox-Web",
+          "description": "Klasik masa oyunu Shut The Box'ın modern arayüzlü ve kurulum gerektirmeyen web versiyonu.",
+          "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/ShutTheBox-Web",
+          "github": "https://github.com/kaeruishere/ShutTheBox-Web"
+        },
+        {
+          "title": "JET10 - Retro Arcade & Oyun Kütüphanesi",
+          "description": "Merkezi bir arcade platformu ve oyun kütüphanesi olarak tasarlanmış, retro temalı bir mobil uygulama. Jeton ekonomisi, Firebase kimlik doğrulama ve AdMob entegrasyonu içerir.",
+          "technologies": [
+            "Flutter",
+            "Dart",
+            "Firebase",
+            "AdMob"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/JET10---Retro-Arcade-Game-Library",
+          "github": "https://github.com/kaeruishere/JET10---Retro-Arcade-Game-Library"
+        },
+        {
+          "title": "Yuvam",
+          "description": "Çiftlerin Nişan, Kına, Düğün gibi organizasyonlarını bütçe ve görev takibi ile kolayca yönetebileceği planlama uygulaması.",
+          "technologies": [
+            "Flutter",
+            "Dart",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Yuvam",
+          "github": "https://github.com/kaeruishere/Yuvam"
+        },
+        {
+          "title": "LoveWrapped",
+          "description": "Özel günler veya yıl dönümleri için hazırlanan, anıları ve istatistikleri görselleştiren Spotify Wrapped tarzında animasyonlu web sitesi.",
+          "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/LoveWrapped",
+          "github": "https://github.com/kaeruishere/LoveWrapped"
+        },
+        {
+          "title": "S.S. Çamlı Tarımsal Kalkınma Kooperatifi",
+          "description": "S.S. Çamlı Tarımsal Kalkınma Kooperatifi için özel olarak tasarlanmış ve geliştirilmiş kurumsal web sitesi.",
+          "technologies": [
+            "PHP",
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1464226184884-fa280b87c3a9?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere",
+          "github": "https://github.com/kaeruishere"
+        },
+        {
+          "title": "Scrap Yard Smash",
+          "description": "Eğlenceli ve aksiyon dolu, hurdalıkta geçen 3D grafiklere sahip fizik tabanlı bir yıkım oyunu.",
+          "technologies": [
+            "Unity",
+            "C#"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1584906734730-a7d4df966d82?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Scrap-Yard-Smash",
+          "github": "https://github.com/kaeruishere/Scrap-Yard-Smash"
+        },
+        {
+          "title": "İş Başvurum",
+          "description": "Kullanıcıların iş başvurularını yönetebildiği, CV yükleyebildiği ve başvuru durumunu takip edebildiği mobil uygulama.",
+          "technologies": [
+            "Flutter",
+            "Dart",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/İş-Başvurum",
+          "github": "https://github.com/kaeruishere/İş-Başvurum"
+        },
+        {
+          "title": "JET10 Oyunları",
+          "description": "JET10 platformu için HTML5 ve web tabanlı olarak geliştirilmiş entegre mini oyunlar koleksiyonu. Responsive tasarım ile her cihazda çalışır.",
+          "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/JET10-Games",
+          "github": "https://github.com/kaeruishere/JET10-Games"
+        },
+        {
+          "title": "SMTP Servisi",
+          "description": "Uygulamalar için özelleştirilmiş, REST API destekli, güvenilir ve hata loglama özellikli mail gönderme mikroservisi.",
+          "technologies": [
+            "Node.js",
+            "Express",
+            "Nodemailer"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/SMTP-Service",
+          "github": "https://github.com/kaeruishere/SMTP-Service"
+        },
+        {
+          "title": "KPSSLingo",
+          "description": "KPSS sınavına hazırlanan adaylar için interaktif bilgi öğrenme ve test çözme uygulaması. Günlük testler, kelime ezber kartları ve ilerleme takibi gibi özellikler sunar.",
+          "technologies": [
+            "Flutter",
+            "Dart",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/KPSSLingo",
+          "github": "https://github.com/kaeruishere/KPSSLingo"
+        },
+        {
+          "title": "Randevusu Online",
+          "description": "İşletmeler için online randevu oluşturma, admin paneli üzerinden yönetim ve takvim entegrasyonu sunan sistem.",
+          "technologies": [
+            "PHP",
+            "JavaScript",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere",
+          "github": "https://github.com/kaeruishere/Randevusu-Online"
+        },
+        {
+          "title": "Shut The Box (Mobil)",
+          "description": "Klasik masa oyunu Shut The Box'ın mobil cihazlar için Java ile geliştirilmiş, zar animasyonlu ve skor tablolu versiyonu.",
+          "technologies": [
+            "Java",
+            "Android Studio",
+            "PostgreSQL",
+            "Flask"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1511649475109-a5c09e7de1db?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Shut-The-Box-Mobile",
+          "github": "https://github.com/kaeruishere/Shut-The-Box-Mobile"
+        },
+        {
+          "title": "Turnuva Platformu",
+          "description": "Arkadaşlarla Pes/Fifa turnuvaları düzenleme, otomatik fikstür oluşturma ve skor takip platformu. İstatistik merkezli iddia oranları ve oyuncu yönetimi sunar.",
+          "technologies": [
+            "HTML/CSS",
+            "JavaScript",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop",
+          "link": "https://kaeruishere.github.io/Tournament-Platform",
+          "github": "https://github.com/kaeruishere/Tournament-Platform"
+        },
+        {
+          "title": "Workie",
+          "description": "Saatlik ücret esasında çalışanlar için iş saati takibi, hakediş hesaplama ve işverene detaylı rapor gönderme uygulaması.",
+          "technologies": [
+            "Java",
+            "Android Studio",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1508962914676-134849a727f0?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Workie",
+          "github": "https://github.com/kaeruishere/Workie"
+        },
+        {
+          "title": "Kaeru URL Bypass Bot",
+          "description": "Kısaltılmış veya reklamlı bağlantıları (URL) otomatik olarak geçmek için tasarlanmış Telegram botu. Birçok farklı servisi destekler ve hızlı yönlendirme sağlar.",
+          "technologies": [
+            "Python",
+            "Telegram Bot API",
+            "Requests"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop",
+          "link": "https://github.com/kaeruishere/Kaeru-URL-Bypass-Bot",
+          "github": "https://github.com/kaeruishere/Kaeru-URL-Bypass-Bot"
+        },
+        {
+          "title": "Kişisel Portfolyo",
+          "description": "Geliştirdiğim projeleri, yeteneklerimi ve deneyimlerimi sergilediğim modern ve duyarlı tasarıma sahip kişisel web sitem.",
+          "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "Firebase"
+          ],
+          "imageUrl": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop",
+          "link": "https://errenn.com",
+          "github": "https://github.com/kaeruishere/errenn.com"
+        }
+      ]
+    },
+    "contact": {
+      "badge": "04.",
+      "title": "İletişim",
+      "headline": "Konuşalım mı?",
+      "subheadline": "Yeni projeler ve fırsatlar hakkında konuşmak her zaman ilgimi çeker. İster bir sorunuz olsun ister sadece merhaba demek isteyin, bana yazmaktan çekinmeyin!",
+      "emailLabel": "E-posta",
+      "emailAction": "Yaz",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "cv": "CV İndir",
+      "emailValue": "kaplanumuteren@gmail.com",
+      "linkedinUrl": "https://www.linkedin.com/in/umuterenkaplan",
+      "githubUrl": "https://github.com/kaeruishere",
+      "cvUrl": "/files/Umut_Eren_Kaplan_Ozgecmis.pdf",
+      "formName": "Ad Soyad",
+      "formEmail": "E-posta",
+      "formSubject": "Konu",
+      "formMessage": "Mesajınız",
+      "formSubmit": "Mesaj Gönder",
+      "formSending": "Gönderiliyor...",
+      "formSuccess": "Mesajınız başarıyla gönderildi!",
+      "formError": "Bir hata oluştu. Lütfen tekrar deneyin.",
+      "formNamePlaceholder": "Ahmet Yılmaz",
+      "formEmailPlaceholder": "ahmet@ornek.com",
+      "formSubjectPlaceholder": "Size nasıl yardımcı olabilirim?",
+      "formMessagePlaceholder": "Mesajınız buraya..."
+    },
+    "footer": {
+      "designedIn": "Tasarım:",
+      "developedIn": "Kodlama:",
+      "builtWith": "Yapım:",
+      "and": "ve"
+    },
+    "layout": {
+      "htmlLang": "tr",
+      "ogLocale": "tr_TR",
+      "title": "Umut Eren Kaplan - Bilgisayar Mühendisi | Portfolyo",
+      "description": "Oyun geliştirme, mobil uygulamalar (Flutter) ve web teknolojilerine odaklanan bilgisayar mühendisi Umut Eren Kaplan'ın kişisel portfolyosu.",
+      "keywords": "Umut Eren Kaplan, Bilgisayar Mühendisi, Geliştirici, Flutter, Unity, Game Developer, Web Developer, C#, Python, Portfolio"
+    }
+  }
+}
