@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { ButtonIcon } from "./ButtonIcon";
 import { Icon } from "./Icon";
 import type { Lang } from "@/i18n/translations";
@@ -8,7 +9,7 @@ import { t } from "@/i18n/translations";
 
 interface HeroProps {
   lang?: Lang;
-  trData?: any;
+  trData?: ReturnType<typeof t>;
 }
 
 export const Hero: React.FC<HeroProps> = ({ lang = "tr", trData }) => {
@@ -29,22 +30,26 @@ export const Hero: React.FC<HeroProps> = ({ lang = "tr", trData }) => {
     let timer: NodeJS.Timeout;
 
     if (isDeleting) {
-      timer = setTimeout(() => {
-        setTypedText((prev) => prev.slice(0, -1));
-      }, 40); // Deleting speed
+      if (typedText === "") {
+        timer = setTimeout(() => {
+          setIsDeleting(false);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+        }, 0);
+      } else {
+        timer = setTimeout(() => {
+          setTypedText((prev) => prev.slice(0, -1));
+        }, 40); // Deleting speed
+      }
     } else {
-      timer = setTimeout(() => {
-        setTypedText((prev) => currentFullText.slice(0, prev.length + 1));
-      }, 80); // Typing speed
-    }
-
-    if (!isDeleting && typedText === currentFullText) {
-      timer = setTimeout(() => {
-        setIsDeleting(true);
-      }, 1500); // Pause time before starting to delete
-    } else if (isDeleting && typedText === "") {
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % roles.length);
+      if (typedText === currentFullText) {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, 1500); // Pause time before starting to delete
+      } else {
+        timer = setTimeout(() => {
+          setTypedText((prev) => currentFullText.slice(0, prev.length + 1));
+        }, 80); // Typing speed
+      }
     }
 
     return () => clearTimeout(timer);
@@ -56,10 +61,13 @@ export const Hero: React.FC<HeroProps> = ({ lang = "tr", trData }) => {
       id="home"
     >
       <div className="relative flex flex-col items-center justify-center mx-auto h-full p-4 max-w-[1200px] text-center gap-y-4 z-10">
-        <img
+        <Image
           src="/img/me.png"
           alt={`${tr.hero.name} - ${tr.hero.role}`}
-          className="rounded-full w-32 h-32 sm:w-40 sm:h-40 object-cover mx-auto"
+          width={256}
+          height={256}
+          priority
+          className="rounded-full w-56 h-56 sm:w-64 sm:h-64 object-cover mx-auto hover:scale-105 transition-transform duration-300 shadow-2xl border-4 border-slate-700/50"
         />
         <p className="font-light text-sm sm:text-base">{tr.hero.greeting}</p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">{tr.hero.name}</h1>
