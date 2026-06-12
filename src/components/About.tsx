@@ -2,12 +2,13 @@ import React from "react";
 import { SectionLayout } from "@/layouts/SectionLayout";
 import { Card } from "@/components/Card";
 import { Icon } from "./Icon";
+import { ButtonIcon } from "./ButtonIcon";
 import type { Lang } from "@/i18n/translations";
 import { t } from "@/i18n/translations";
 
 interface AboutProps {
   lang?: Lang;
-  trData?: any;
+  trData?: ReturnType<typeof t>;
 }
 
 export const About: React.FC<AboutProps> = ({ lang = "tr", trData }) => {
@@ -29,9 +30,18 @@ export const About: React.FC<AboutProps> = ({ lang = "tr", trData }) => {
         <Card isDark className="w-full">
           <h3 className="text-2xl font-semibold mb-4 text-center lg:text-left">{tr.about.whoTitle}</h3>
           <p 
-            className="text-slate-300 leading-relaxed text-sm md:text-base text-center lg:text-left"
+            className="text-slate-300 leading-relaxed text-sm md:text-base text-center lg:text-left mb-6"
             dangerouslySetInnerHTML={{ __html: tr.about.bio1 || "" }}
           />
+          <div className="flex justify-center lg:justify-start">
+            <ButtonIcon
+              name={tr.about.cvCardTitle || "Özgeçmiş (CV)"}
+              url={tr.contact.cvUrl}
+              iconName="pdf"
+              isBlank
+              animated
+            />
+          </div>
         </Card>
 
         {/* 3 Small Info Cards */}
@@ -42,10 +52,10 @@ export const About: React.FC<AboutProps> = ({ lang = "tr", trData }) => {
             </div>
             <div>
               <h4 className="text-base font-bold text-white mb-1">
-                {(tr.about as any).infoCard1Title || ""}
+                {(tr.about as unknown as Record<string, string>).infoCard1Title || ""}
               </h4>
               <p className="text-slate-400 text-xs leading-relaxed">
-                {(tr.about as any).infoCard1Text || ""}
+                {(tr.about as unknown as Record<string, string>).infoCard1Text || ""}
               </p>
             </div>
           </Card>
@@ -56,10 +66,10 @@ export const About: React.FC<AboutProps> = ({ lang = "tr", trData }) => {
             </div>
             <div>
               <h4 className="text-base font-bold text-white mb-1">
-                {(tr.about as any).infoCard2Title || ""}
+                {(tr.about as unknown as Record<string, string>).infoCard2Title || ""}
               </h4>
               <p className="text-slate-400 text-xs leading-relaxed">
-                {(tr.about as any).infoCard2Text || ""}
+                {(tr.about as unknown as Record<string, string>).infoCard2Text || ""}
               </p>
             </div>
           </Card>
@@ -70,10 +80,10 @@ export const About: React.FC<AboutProps> = ({ lang = "tr", trData }) => {
             </div>
             <div>
               <h4 className="text-base font-bold text-white mb-1">
-                {(tr.about as any).infoCard3Title || ""}
+                {(tr.about as unknown as Record<string, string>).infoCard3Title || ""}
               </h4>
               <p className="text-slate-400 text-xs leading-relaxed">
-                {(tr.about as any).infoCard3Text || ""}
+                {(tr.about as unknown as Record<string, string>).infoCard3Text || ""}
               </p>
             </div>
           </Card>

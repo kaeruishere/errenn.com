@@ -169,25 +169,77 @@ a.active {
   transform: translateX(0);
 }
 
-.spotlight {
-  background-color: #618004;
+.custom-cursor-ring {
   position: fixed;
-  top: -200px;
-  left: -250px;
-  transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px));
-  height: 400px;
-  width: 500px;
-  filter: blur(180px);
-  border-radius: 50%;
-  transition: opacity 0.5s ease-in-out, transform 0s linear;
-  z-index: 1;
-  will-change: transform;
-  opacity: 0;
   pointer-events: none;
+  z-index: 9999;
+  border: 1.5px solid rgba(199, 255, 36, 0.45);
+  background-color: rgba(199, 255, 36, 0.03);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  top: 0;
+  left: 0;
+  transition: 
+    opacity 0.3s ease, 
+    background-color 0.3s ease, 
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  will-change: transform, width, height, border-radius;
 }
 
-.spotlight.visible {
-  opacity: 0.25;
+.custom-cursor-ring.visible {
+  opacity: 1;
+}
+
+.custom-cursor-ring.hovering {
+  border-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.custom-cursor-ring.text-mode {
+  border: none;
+  background-color: var(--color-primary);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 0 8px var(--color-primary);
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  margin-top: -4px;
+  margin-left: -4px;
+  transition: opacity 0.3s ease, transform 0s linear;
+  will-change: transform;
+}
+
+.custom-cursor-dot.visible {
+  opacity: 1;
+}
+
+.custom-cursor-dot.pressed {
+  transform: scale(0.5) !important;
+}
+
+.hide-default-cursor,
+.hide-default-cursor * {
+  @media (hover: hover) and (pointer: fine) {
+    cursor: none !important;
+  }
 }
 
 @keyframes blink {
