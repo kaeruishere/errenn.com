@@ -15,6 +15,14 @@ export default function AdminPage() {
   const [saveStatus, setSaveStatus] = useState<"idle" | "success" | "error">("idle");
   const [saveMessage, setSaveMessage] = useState("");
 
+  // GitHub integration states
+  const [isGithubModalOpen, setIsGithubModalOpen] = useState(false);
+  const [githubUsername, setGithubUsername] = useState("");
+  const [githubRepos, setGithubRepos] = useState<any[]>([]);
+  const [isLoadingRepos, setIsLoadingRepos] = useState(false);
+  const [repoError, setRepoError] = useState("");
+  const [selectedRepos, setSelectedRepos] = useState<number[]>([]);
+
   // Check if password exists in localStorage on mount
   useEffect(() => {
     const savedPassword = localStorage.getItem("portfolio_admin_password");
@@ -22,6 +30,17 @@ export default function AdminPage() {
       verifyPassword(savedPassword);
     }
   }, []);
+
+  // Extract GitHub username when data is loaded
+  useEffect(() => {
+    if (data) {
+      const githubUrl = data.en?.contact?.githubUrl || data.tr?.contact?.githubUrl || "";
+      if (githubUrl.includes("github.com/")) {
+        const username = githubUrl.split("github.com/").pop()?.split("/")[0] || "";
+        setGithubUsername(username);
+      }
+    }
+  }, [data]);
 
   const verifyPassword = async (pass: string) => {
     try {
@@ -263,6 +282,85 @@ export default function AdminPage() {
       next[editLang].projects.items = items;
       return next;
     });
+  };
+
+  // GitHub integration helpers
+  const fetchGithubRepos = async (username: string) => {
+    if (!username.trim()) {
+      setRepoError("Please enter a username");
+      return;
+    }
+    setIsLoadingRepos(true);
+    setRepoError("");
+    try {
+      const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+      if (!res.ok) {
+        throw new Error(res.status === 404 ? "User not found" : "Failed to fetch repositories");
+      }
+      const data = await res.json();
+      setGithubRepos(data);
+    } catch (err: any) {
+      setRepoError(err.message || "An error occurred");
+    } finally {
+      setIsLoadingRepos(false);
+    }
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedRepos.length === githubRepos.length) {
+      setSelectedRepos([]);
+    } else {
+      setSelectedRepos(githubRepos.map((repo: any) => repo.id));
+    }
+  };
+
+  const toggleSelectRepo = (repoId: number) => {
+    setSelectedRepos(prev => 
+      prev.includes(repoId) ? prev.filter(id => id !== repoId) : [...prev, repoId]
+    );
+  };
+
+  const importSelectedRepos = () => {
+    if (selectedRepos.length === 0) return;
+    
+    setData((prev: any) => {
+      const next = { ...prev };
+      next[editLang] = { ...next[editLang] };
+      next[editLang].projects = { ...next[editLang].projects };
+      const items = [...next[editLang].projects.items];
+      
+      const newItems = githubRepos
+        .filter((repo: any) => selectedRepos.includes(repo.id))
+        .map((repo: any) => {
+          // Format repo name: "my-repo-name" -> "My Repo Name"
+          const title = repo.name
+            .split(/[-_]+/)
+            .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+
+          const technologies = [repo.language, ...(repo.topics || [])]
+            .filter(Boolean)
+            .map((t: string) => t.charAt(0).toUpperCase() + t.slice(1));
+          
+          const uniqueTechnologies = Array.from(new Set(technologies));
+
+          return {
+            title,
+            description: repo.description || "",
+            technologies: uniqueTechnologies.length > 0 ? uniqueTechnologies : ["React"],
+            imageUrl: "",
+            link: repo.homepage || repo.html_url,
+            github: repo.html_url,
+            featured: false
+          };
+        });
+      
+      next[editLang].projects.items = [...newItems, ...items];
+      return next;
+    });
+    
+    setIsGithubModalOpen(false);
+    setSelectedRepos([]);
   };
 
   // Certifications & Techs helpers
@@ -1203,14 +1301,25 @@ export default function AdminPage() {
 
               {/* Items Management */}
               <div className="bg-[#161a25] border border-slate-800 rounded-2xl p-6">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4 mb-6">
                   <h3 className="text-white font-bold text-sm">Projects Showcase</h3>
-                  <button
-                    onClick={addProjectItem}
-                    className="bg-[#c7ff24]/10 hover:bg-[#c7ff24]/20 border border-[#c7ff24]/30 text-[#c7ff24] text-xs font-bold py-1.5 px-4 rounded-lg flex items-center gap-1 transition-all cursor-pointer"
-                  >
-                    + Add Project
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setIsGithubModalOpen(true)}
+                      className="bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-white text-xs font-bold py-1.5 px-4 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.48 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                      </svg>
+                      Fetch from GitHub
+                    </button>
+                    <button
+                      onClick={addProjectItem}
+                      className="bg-[#c7ff24]/10 hover:bg-[#c7ff24]/20 border border-[#c7ff24]/30 text-[#c7ff24] text-xs font-bold py-1.5 px-4 rounded-lg flex items-center gap-1 transition-all cursor-pointer"
+                    >
+                      + Add Project
+                    </button>
+                  </div>
                 </div>
 
                 <div className="space-y-6">
@@ -1667,6 +1776,166 @@ export default function AdminPage() {
         </div>
 
       </main>
+
+      {/* GitHub Integration Modal */}
+      {isGithubModalOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-[#11141c] border border-slate-800 rounded-3xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            {/* Header */}
+            <div className="p-6 border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.48 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                </svg>
+                <h3 className="text-white font-bold text-lg">Fetch Projects from GitHub</h3>
+              </div>
+              <button
+                onClick={() => {
+                  setIsGithubModalOpen(false);
+                  setGithubRepos([]);
+                  setRepoError("");
+                  setSelectedRepos([]);
+                }}
+                className="text-slate-400 hover:text-white transition-colors p-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Search/Username input */}
+            <div className="p-6 bg-[#161a25]/50 border-b border-slate-800 flex flex-col sm:flex-row gap-3">
+              <div className="flex-grow">
+                <label className="block text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-2">GitHub Username</label>
+                <input
+                  type="text"
+                  placeholder="e.g. kaeruishere"
+                  value={githubUsername}
+                  onChange={(e) => setGithubUsername(e.target.value)}
+                  className="w-full bg-[#11141c] border border-slate-800 focus:border-[#c7ff24] text-white rounded-xl py-2 px-4 outline-none text-sm font-semibold"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") fetchGithubRepos(githubUsername);
+                  }}
+                />
+              </div>
+              <button
+                onClick={() => fetchGithubRepos(githubUsername)}
+                disabled={isLoadingRepos}
+                className="sm:mt-6 bg-[#c7ff24] hover:bg-[#b0e21a] disabled:bg-[#c7ff24]/50 text-slate-900 font-bold px-6 py-2 rounded-xl transition-all cursor-pointer text-sm"
+              >
+                {isLoadingRepos ? "Fetching..." : "Fetch Repositories"}
+              </button>
+            </div>
+
+            {/* Repos list */}
+            <div className="flex-grow overflow-y-auto p-6 space-y-4">
+              {isLoadingRepos && (
+                <div className="py-12 flex flex-col items-center justify-center gap-3">
+                  <div className="w-8 h-8 border-4 border-[#c7ff24] border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-slate-400 text-xs font-medium">Fetching public repositories...</p>
+                </div>
+              )}
+
+              {repoError && (
+                <div className="py-8 text-center text-red-400 text-xs font-semibold bg-red-950/20 border border-red-900 rounded-xl p-4">
+                  ⚠️ {repoError}
+                </div>
+              )}
+
+              {!isLoadingRepos && !repoError && githubRepos.length === 0 && (
+                <div className="py-12 text-center text-slate-500 text-xs font-medium">
+                  Enter a GitHub username and click "Fetch Repositories" to load projects.
+                </div>
+              )}
+
+              {!isLoadingRepos && !repoError && githubRepos.length > 0 && (
+                <>
+                  <div className="flex items-center justify-between text-xs text-slate-400 pb-2 border-b border-slate-800/50">
+                    <span>Found {githubRepos.length} public repositories</span>
+                    <button
+                      onClick={toggleSelectAll}
+                      className="text-[#c7ff24] hover:underline font-semibold cursor-pointer"
+                    >
+                      {selectedRepos.length === githubRepos.length ? "Deselect All" : "Select All"}
+                    </button>
+                  </div>
+
+                  <div className="space-y-2">
+                    {githubRepos.map((repo: any) => {
+                      const isSelected = selectedRepos.includes(repo.id);
+                      return (
+                        <div
+                          key={repo.id}
+                          onClick={() => toggleSelectRepo(repo.id)}
+                          className={`p-4 border rounded-2xl flex items-start gap-3 cursor-pointer transition-all ${
+                            isSelected
+                              ? "bg-[#c7ff24]/5 border-[#c7ff24]/30"
+                              : "bg-[#161a25]/40 border-slate-800 hover:border-slate-700"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isSelected}
+                            onChange={() => {}} // click handled by parent
+                            className="w-4 h-4 mt-0.5 bg-[#161a25] border border-slate-800 text-[var(--color-primary)] rounded cursor-pointer accent-[#c7ff24]"
+                          />
+                          <div className="flex-grow space-y-1">
+                            <div className="flex items-center justify-between">
+                              <h4 className="text-white text-sm font-bold">{repo.name}</h4>
+                              {repo.language && (
+                                <span className="bg-slate-800 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                  {repo.language}
+                                </span>
+                              )}
+                            </div>
+                            {repo.description && (
+                              <p className="text-slate-400 text-xs line-clamp-2">{repo.description}</p>
+                            )}
+                            <div className="flex items-center gap-3 text-[10px] text-slate-500 pt-1">
+                              <span className="flex items-center gap-1">
+                                🌟 {repo.stargazers_count}
+                              </span>
+                              {repo.homepage && (
+                                <span className="text-[#c7ff24]">🔗 Demo available</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="p-6 border-t border-slate-800 bg-[#161a25]/30 flex items-center justify-between">
+              <span className="text-xs text-slate-400">
+                {selectedRepos.length} project{selectedRepos.length !== 1 ? "s" : ""} selected
+              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => {
+                    setIsGithubModalOpen(false);
+                    setGithubRepos([]);
+                    setRepoError("");
+                    setSelectedRepos([]);
+                  }}
+                  className="bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs py-2.5 px-4 rounded-xl transition-all cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={importSelectedRepos}
+                  disabled={selectedRepos.length === 0}
+                  className="bg-[#c7ff24] hover:bg-[#b0e21a] disabled:opacity-50 text-slate-900 font-bold text-xs py-2.5 px-5 rounded-xl transition-all cursor-pointer"
+                >
+                  Import Selected
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
