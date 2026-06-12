@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   authors: [{ name: "Umut Eren Kaplan" }],
+  icons: {
+    icon: "/favicon.svg",
+  },
   robots: "index, follow",
   alternates: {
     canonical: "https://errenn.com/en",

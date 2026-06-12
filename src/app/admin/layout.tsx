@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Admin Panel - errenn.com",
   description: "Admin Console to manage portfolio contents",
   robots: "noindex, nofollow",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function AdminLayout({
