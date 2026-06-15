@@ -43,27 +43,38 @@ export default function ProjectsPage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map(({ title, description, technologies, imageUrl, link, github }) => {
+          {projects.map((project: any) => {
+            const { title, description, technologies, imageUrl, link, github, hasDemo, isPublic } = project;
             return (
               <div
                 key={title}
                 className="group bg-[#171e2d] border border-slate-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-slate-600 flex flex-col"
               >
-                <a
-                  className="aspect-video w-full overflow-hidden bg-slate-800"
-                  href={link}
-                  target="_blank"
-                  rel="noopener nofollow"
-                >
-                  <img
-                    alt={title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    src={imageUrl}
-                  />
-                </a>
+                {hasDemo !== false && link ? (
+                  <a
+                    className="aspect-video w-full overflow-hidden bg-slate-800"
+                    href={link}
+                    target="_blank"
+                    rel="noopener nofollow"
+                  >
+                    <img
+                      alt={title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      src={imageUrl}
+                    />
+                  </a>
+                ) : (
+                  <div className="aspect-video w-full overflow-hidden bg-slate-800">
+                    <img
+                      alt={title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      src={imageUrl}
+                    />
+                  </div>
+                )}
                 <div className="p-6 flex-grow flex flex-col">
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {technologies.map((tech) => (
+                    {technologies.map((tech: string) => (
                       <span
                         key={tech}
                         className="px-3 py-1 text-[10px] font-bold tracking-wider rounded-full bg-[#171e2d]/10 text-accent border border-[var(--color-primary)]/50"
@@ -77,20 +88,24 @@ export default function ProjectsPage() {
                   </h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-6">{description}</p>
                   <div className="flex gap-2 justify-start mt-auto">
-                    <ButtonIcon
-                      url={link}
-                      name={tr.projects.viewSite}
-                      iconName="new-window"
-                      isBlank
-                      animated
-                    />
-                    <ButtonIcon
-                      url={github}
-                      name={tr.projects.viewRepo}
-                      iconName="github"
-                      isBlank
-                      animated
-                    />
+                    {hasDemo !== false && link && (
+                      <ButtonIcon
+                        url={link}
+                        name={tr.projects.viewSite}
+                        iconName="new-window"
+                        isBlank
+                        animated
+                      />
+                    )}
+                    {isPublic !== false && github && (
+                      <ButtonIcon
+                        url={github}
+                        name={tr.projects.viewRepo}
+                        iconName="github"
+                        isBlank
+                        animated
+                      />
+                    )}
                   </div>
                 </div>
               </div>

@@ -248,7 +248,9 @@ export default function AdminPage() {
         imageUrl: "/img/react-ecommerce.webp",
         link: "https://example.com",
         github: "https://github.com",
-        featured: false
+        featured: false,
+        hasDemo: true,
+        isPublic: true
       });
       next[editLang].projects.items = items;
       return next;
@@ -348,10 +350,12 @@ export default function AdminPage() {
             title,
             description: repo.description || "",
             technologies: uniqueTechnologies.length > 0 ? uniqueTechnologies : ["React"],
-            imageUrl: "",
-            link: repo.homepage || repo.html_url,
+            imageUrl: `https://raw.githubusercontent.com/${githubUsername || "kaeruishere"}/${repo.name}/main/cover.png`,
+            link: repo.homepage || "",
             github: repo.html_url,
-            featured: false
+            featured: false,
+            hasDemo: !!repo.homepage,
+            isPublic: true
           };
         });
       
@@ -1410,8 +1414,8 @@ export default function AdminPage() {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-                          <div className="md:col-span-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
                             <label className="block text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-2">Live Demo URL</label>
                             <input
                               type="text"
@@ -1429,17 +1433,36 @@ export default function AdminPage() {
                               className="w-full bg-[#161a25] border border-slate-800 text-white rounded-lg py-1.5 px-3 outline-none text-xs"
                             />
                           </div>
-                          <div className="flex items-center mt-6">
-                            <label className="flex items-center cursor-pointer select-none text-xs text-white font-semibold gap-2">
-                              <input
-                                type="checkbox"
-                                checked={!!project.featured}
-                                onChange={(e) => updateProjectItem(idx, "featured", e.target.checked)}
-                                className="w-4 h-4 bg-[#161a25] border border-slate-800 text-[var(--color-primary)] rounded cursor-pointer accent-[var(--color-primary)] focus:ring-0"
-                              />
-                              Show on Home Page
-                            </label>
-                          </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-x-6 gap-y-2 mt-2 pt-1">
+                          <label className="flex items-center cursor-pointer select-none text-xs text-white font-semibold gap-2">
+                            <input
+                              type="checkbox"
+                              checked={project.hasDemo !== false}
+                              onChange={(e) => updateProjectItem(idx, "hasDemo", e.target.checked)}
+                              className="w-4 h-4 bg-[#161a25] border border-slate-800 text-[var(--color-primary)] rounded cursor-pointer accent-[var(--color-primary)] focus:ring-0"
+                            />
+                            Live Demo Available
+                          </label>
+                          <label className="flex items-center cursor-pointer select-none text-xs text-white font-semibold gap-2">
+                            <input
+                              type="checkbox"
+                              checked={project.isPublic !== false}
+                              onChange={(e) => updateProjectItem(idx, "isPublic", e.target.checked)}
+                              className="w-4 h-4 bg-[#161a25] border border-slate-800 text-[var(--color-primary)] rounded cursor-pointer accent-[var(--color-primary)] focus:ring-0"
+                            />
+                            Repository is Public
+                          </label>
+                          <label className="flex items-center cursor-pointer select-none text-xs text-white font-semibold gap-2">
+                            <input
+                              type="checkbox"
+                              checked={!!project.featured}
+                              onChange={(e) => updateProjectItem(idx, "featured", e.target.checked)}
+                              className="w-4 h-4 bg-[#161a25] border border-slate-800 text-[var(--color-primary)] rounded cursor-pointer accent-[var(--color-primary)] focus:ring-0"
+                            />
+                            Show on Home Page
+                          </label>
                         </div>
 
                         <div>
