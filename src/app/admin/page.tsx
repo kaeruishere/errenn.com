@@ -23,6 +23,7 @@ export default function AdminPage() {
   const [repoError, setRepoError] = useState("");
   const [selectedRepos, setSelectedRepos] = useState<number[]>([]);
   const [selectedProjectsToDelete, setSelectedProjectsToDelete] = useState<number[]>([]);
+  const [isImporting, setIsImporting] = useState(false);
 
   // Reset selected projects to delete when active tab or language changes
   useEffect(() => {
@@ -328,22 +329,37 @@ export default function AdminPage() {
     );
   };
 
-  const importSelectedRepos = () => {
+  const translateText = async (text: string, from: string, to: string): Promise<string> => {
+    if (!text) return "";
+    try {
+      const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`);
+      if (res.ok) {
+        const json = await res.json();
+        let translated = json.responseData?.translatedText || text;
+        // Basic unescape of HTML entities returned by MyMemory
+        translated = translated
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>');
+        return translated;
+      }
+    } catch (err) {
+      console.error("Translation error:", err);
+    }
+    return text;
+  };
+
+  const importSelectedRepos = async () => {
     if (selectedRepos.length === 0) return;
+    setIsImporting(true);
     
-    setData((prev: any) => {
-      const next = { ...prev };
-      
-      // Import into both Turkish and English project lists
-      ["tr", "en"].forEach((lang) => {
-        if (!next[lang]) return;
-        next[lang] = { ...next[lang] };
-        next[lang].projects = { ...next[lang].projects };
-        const items = [...next[lang].projects.items];
-        
-        const newItems = githubRepos
+    try {
+      const importedProjects = await Promise.all(
+        githubRepos
           .filter((repo: any) => selectedRepos.includes(repo.id))
-          .map((repo: any) => {
+          .map(async (repo: any) => {
             // Format repo name: "my-repo-name" -> "My Repo Name"
             const title = repo.name
               .split(/[-_]+/)
@@ -357,20 +373,26 @@ export default function AdminPage() {
             const uniqueTechnologies = Array.from(new Set(technologies));
 
             // Parse description: split by | or / if present
-            let desc = repo.description || "";
+            let trDesc = repo.description || "";
+            let enDesc = repo.description || "";
+
             if (repo.description) {
               if (repo.description.includes("|")) {
                 const parts = repo.description.split("|");
-                desc = lang === "tr" ? parts[0].trim() : (parts[1] || parts[0]).trim();
+                trDesc = parts[0].trim();
+                enDesc = (parts[1] || parts[0]).trim();
               } else if (repo.description.includes("/")) {
                 const parts = repo.description.split("/");
-                desc = lang === "tr" ? parts[0].trim() : (parts[1] || parts[0]).trim();
+                trDesc = parts[0].trim();
+                enDesc = (parts[1] || parts[0]).trim();
+              } else {
+                // Auto-translate description to English if no separator is present
+                enDesc = await translateText(repo.description, "tr", "en");
               }
             }
 
-            return {
+            const baseProject = {
               title,
-              description: desc,
               technologies: uniqueTechnologies.length > 0 ? uniqueTechnologies : ["React"],
               imageUrl: `https://raw.githubusercontent.com/${githubUsername || "kaeruishere"}/${repo.name}/main/cover.png`,
               link: repo.homepage || "",
@@ -379,16 +401,37 @@ export default function AdminPage() {
               hasDemo: !!repo.homepage,
               isPublic: true
             };
-          });
+
+            return {
+              tr: { ...baseProject, description: trDesc },
+              en: { ...baseProject, description: enDesc }
+            };
+          })
+      );
+
+      setData((prev: any) => {
+        const next = { ...prev };
+        
+        ["tr", "en"].forEach((lang) => {
+          if (!next[lang]) return;
+          next[lang] = { ...next[lang] };
+          next[lang].projects = { ...next[lang].projects };
+          const items = [...next[lang].projects.items];
           
-        next[lang].projects.items = [...newItems, ...items];
+          const newItems = importedProjects.map((p: any) => p[lang]);
+          next[lang].projects.items = [...newItems, ...items];
+        });
+        
+        return next;
       });
-      
-      return next;
-    });
-    
-    setIsGithubModalOpen(false);
-    setSelectedRepos([]);
+
+    } catch (err) {
+      alert("Error importing repositories");
+    } finally {
+      setIsImporting(false);
+      setIsGithubModalOpen(false);
+      setSelectedRepos([]);
+    }
   };
 
   const toggleSelectProjectToDelete = (idx: number) => {
@@ -2034,10 +2077,17 @@ export default function AdminPage() {
                 </button>
                 <button
                   onClick={importSelectedRepos}
-                  disabled={selectedRepos.length === 0}
-                  className="bg-[#c7ff24] hover:bg-[#b0e21a] disabled:opacity-50 text-slate-900 font-bold text-xs py-2.5 px-5 rounded-xl transition-all cursor-pointer"
+                  disabled={selectedRepos.length === 0 || isImporting}
+                  className="bg-[#c7ff24] hover:bg-[#b0e21a] disabled:opacity-50 text-slate-900 font-bold text-xs py-2.5 px-5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5"
                 >
-                  Import Selected
+                  {isImporting ? (
+                    <>
+                      <div className="w-3.5 h-3.5 border-2 border-slate-900 border-t-transparent rounded-full animate-spin"></div>
+                      Importing & Translating...
+                    </>
+                  ) : (
+                    "Import Selected"
+                  )}
                 </button>
               </div>
             </div>
