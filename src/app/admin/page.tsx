@@ -233,11 +233,39 @@ export default function AdminPage() {
   const updateProjectItem = (index: number, key: string, value: any) => {
     setData((prev: any) => {
       const next = { ...prev };
-      next[editLang] = { ...next[editLang] };
-      next[editLang].projects = { ...next[editLang].projects };
-      const items = [...next[editLang].projects.items];
-      items[index] = { ...items[index], [key]: value };
-      next[editLang].projects.items = items;
+      const currentLang = editLang;
+      next[currentLang] = { ...next[currentLang] };
+      next[currentLang].projects = { ...next[currentLang].projects };
+      const currentItems = [...next[currentLang].projects.items];
+      
+      const targetProject = currentItems[index];
+      if (!targetProject) return prev;
+      
+      currentItems[index] = { ...targetProject, [key]: value };
+      next[currentLang].projects.items = currentItems;
+
+      // Automatically sync featured (Show on Home Page) status across languages
+      if (key === "featured") {
+        const otherLang = currentLang === "tr" ? "en" : "tr";
+        if (next[otherLang] && next[otherLang].projects && next[otherLang].projects.items) {
+          next[otherLang] = { ...next[otherLang] };
+          next[otherLang].projects = { ...next[otherLang].projects };
+          const otherItems = [...next[otherLang].projects.items];
+          
+          const matchIndex = otherItems.findIndex((item: any) => {
+            if (targetProject.github && item.github) {
+              return item.github.trim().toLowerCase() === targetProject.github.trim().toLowerCase();
+            }
+            return item.title.trim().toLowerCase() === targetProject.title.trim().toLowerCase();
+          });
+          
+          if (matchIndex !== -1) {
+            otherItems[matchIndex] = { ...otherItems[matchIndex], featured: value };
+            next[otherLang].projects.items = otherItems;
+          }
+        }
+      }
+      
       return next;
     });
   };
