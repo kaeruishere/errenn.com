@@ -22,6 +22,12 @@ export default function AdminPage() {
   const [isLoadingRepos, setIsLoadingRepos] = useState(false);
   const [repoError, setRepoError] = useState("");
   const [selectedRepos, setSelectedRepos] = useState<number[]>([]);
+  const [selectedProjectsToDelete, setSelectedProjectsToDelete] = useState<number[]>([]);
+
+  // Reset selected projects to delete when active tab or language changes
+  useEffect(() => {
+    setSelectedProjectsToDelete([]);
+  }, [activeTab, editLang]);
 
   // Check if password exists in localStorage on mount
   useEffect(() => {
@@ -383,6 +389,34 @@ export default function AdminPage() {
     
     setIsGithubModalOpen(false);
     setSelectedRepos([]);
+  };
+
+  const toggleSelectProjectToDelete = (idx: number) => {
+    setSelectedProjectsToDelete(prev =>
+      prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]
+    );
+  };
+
+  const deleteSelectedProjects = () => {
+    if (selectedProjectsToDelete.length === 0) return;
+    if (!confirm(`Are you sure you want to delete the ${selectedProjectsToDelete.length} selected projects?`)) return;
+    
+    setData((prev: any) => {
+      const next = { ...prev };
+      next[editLang] = { ...next[editLang] };
+      next[editLang].projects = { ...next[editLang].projects };
+      const items = [...next[editLang].projects.items];
+      
+      const sortedIndexes = [...selectedProjectsToDelete].sort((a, b) => b - a);
+      sortedIndexes.forEach(idx => {
+        items.splice(idx, 1);
+      });
+      
+      next[editLang].projects.items = items;
+      return next;
+    });
+    
+    setSelectedProjectsToDelete([]);
   };
 
   // Certifications & Techs helpers
@@ -1324,8 +1358,35 @@ export default function AdminPage() {
               {/* Items Management */}
               <div className="bg-[#161a25] border border-slate-800 rounded-2xl p-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4 mb-6">
-                  <h3 className="text-white font-bold text-sm">Projects Showcase</h3>
+                  <div className="flex items-center gap-4">
+                    <h3 className="text-white font-bold text-sm">Projects Showcase</h3>
+                    {currentData.projects.items.length > 0 && (
+                      <label className="flex items-center cursor-pointer select-none text-xs text-slate-400 hover:text-slate-300 font-semibold gap-1.5 bg-slate-800/40 py-1 px-2.5 rounded-lg border border-slate-800">
+                        <input
+                          type="checkbox"
+                          checked={selectedProjectsToDelete.length === currentData.projects.items.length}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setSelectedProjectsToDelete(currentData.projects.items.map((_: any, i: number) => i));
+                            } else {
+                              setSelectedProjectsToDelete([]);
+                            }
+                          }}
+                          className="w-3.5 h-3.5 bg-[#161a25] border-slate-800 text-[var(--color-primary)] rounded cursor-pointer accent-[var(--color-primary)] focus:ring-0"
+                        />
+                        Select All
+                      </label>
+                    )}
+                  </div>
                   <div className="flex items-center gap-2">
+                    {selectedProjectsToDelete.length > 0 && (
+                      <button
+                        onClick={deleteSelectedProjects}
+                        className="bg-red-950/40 hover:bg-red-900 border border-red-900/50 text-red-400 text-xs font-bold py-1.5 px-4 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer"
+                      >
+                        🗑️ Delete Selected ({selectedProjectsToDelete.length})
+                      </button>
+                    )}
                     <button
                       onClick={() => setIsGithubModalOpen(true)}
                       className="bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-white text-xs font-bold py-1.5 px-4 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer"
@@ -1381,7 +1442,13 @@ export default function AdminPage() {
                       {/* Project details */}
                       <div className="flex-grow space-y-4">
                         <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
-                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              checked={selectedProjectsToDelete.includes(idx)}
+                              onChange={() => toggleSelectProjectToDelete(idx)}
+                              className="w-3.5 h-3.5 bg-[#161a25] border border-slate-800 text-[var(--color-primary)] rounded cursor-pointer accent-[var(--color-primary)] focus:ring-0"
+                            />
                             Project #{idx + 1}
                           </span>
                           <div className="flex items-center gap-1.5">
