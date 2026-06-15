@@ -260,7 +260,7 @@
         },
         {
           "title": "S.S. Çamlı Tarımsal Kalkınma Kooperatifi",
-          "description": "Custom corporate website designed and developed for the S.S. Çamlı Tarımsal Kalkınma Kooperatifi",
+          "description": "A lightweight, flat-file corporate website developed for S.S. Çamlı Agricultural Cooperative, optimized for local SEO.",
           "technologies": [
             "PHP",
             "HTML5",
@@ -708,7 +708,7 @@
         },
         {
           "title": "S.S. Çamlı Tarımsal Kalkınma Kooperatifi",
-          "description": "S.S. Çamlı Tarımsal Kalkınma Kooperatifi için özel olarak tasarlanmış ve geliştirilmiş kurumsal web sitesi.",
+          "description": "S.S. Çamlı Tarımsal Kalkınma Kooperatifi için veritabanı bağımsız (flat-file) mimariyle ve yerel SEO odaklı geliştirilmiş kurumsal web sitesi.",
           "technologies": [
             "PHP",
             "HTML5",

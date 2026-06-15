@@ -327,39 +327,57 @@ export default function AdminPage() {
     
     setData((prev: any) => {
       const next = { ...prev };
-      next[editLang] = { ...next[editLang] };
-      next[editLang].projects = { ...next[editLang].projects };
-      const items = [...next[editLang].projects.items];
       
-      const newItems = githubRepos
-        .filter((repo: any) => selectedRepos.includes(repo.id))
-        .map((repo: any) => {
-          // Format repo name: "my-repo-name" -> "My Repo Name"
-          const title = repo.name
-            .split(/[-_]+/)
-            .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
+      // Import into both Turkish and English project lists
+      ["tr", "en"].forEach((lang) => {
+        if (!next[lang]) return;
+        next[lang] = { ...next[lang] };
+        next[lang].projects = { ...next[lang].projects };
+        const items = [...next[lang].projects.items];
+        
+        const newItems = githubRepos
+          .filter((repo: any) => selectedRepos.includes(repo.id))
+          .map((repo: any) => {
+            // Format repo name: "my-repo-name" -> "My Repo Name"
+            const title = repo.name
+              .split(/[-_]+/)
+              .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ");
 
-          const technologies = [repo.language, ...(repo.topics || [])]
-            .filter(Boolean)
-            .map((t: string) => t.charAt(0).toUpperCase() + t.slice(1));
+            const technologies = [repo.language, ...(repo.topics || [])]
+              .filter(Boolean)
+              .map((t: string) => t.charAt(0).toUpperCase() + t.slice(1));
+            
+            const uniqueTechnologies = Array.from(new Set(technologies));
+
+            // Parse description: split by | or / if present
+            let desc = repo.description || "";
+            if (repo.description) {
+              if (repo.description.includes("|")) {
+                const parts = repo.description.split("|");
+                desc = lang === "tr" ? parts[0].trim() : (parts[1] || parts[0]).trim();
+              } else if (repo.description.includes("/")) {
+                const parts = repo.description.split("/");
+                desc = lang === "tr" ? parts[0].trim() : (parts[1] || parts[0]).trim();
+              }
+            }
+
+            return {
+              title,
+              description: desc,
+              technologies: uniqueTechnologies.length > 0 ? uniqueTechnologies : ["React"],
+              imageUrl: `https://raw.githubusercontent.com/${githubUsername || "kaeruishere"}/${repo.name}/main/cover.png`,
+              link: repo.homepage || "",
+              github: repo.html_url,
+              featured: false,
+              hasDemo: !!repo.homepage,
+              isPublic: true
+            };
+          });
           
-          const uniqueTechnologies = Array.from(new Set(technologies));
-
-          return {
-            title,
-            description: repo.description || "",
-            technologies: uniqueTechnologies.length > 0 ? uniqueTechnologies : ["React"],
-            imageUrl: `https://raw.githubusercontent.com/${githubUsername || "kaeruishere"}/${repo.name}/main/cover.png`,
-            link: repo.homepage || "",
-            github: repo.html_url,
-            featured: false,
-            hasDemo: !!repo.homepage,
-            isPublic: true
-          };
-        });
+        next[lang].projects.items = [...newItems, ...items];
+      });
       
-      next[editLang].projects.items = [...newItems, ...items];
       return next;
     });
     
