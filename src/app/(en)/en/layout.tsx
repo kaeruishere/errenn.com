@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "../../globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://errenn.com"),
@@ -63,6 +64,7 @@ export default function EnLayout({
     <html lang="en" className="scroll-smooth scroll-pt-20 h-full">
       <body className="min-h-full bg-dark text-light font-primary antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
